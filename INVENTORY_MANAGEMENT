@@ -1,0 +1,21 @@
+1. Check Inventory Levels
+
+SELECT Product_Name, Quantity_Available 
+FROM Stock
+JOIN Product ON Stock.Product_ID = Product.Product_ID;
+
+2. Reorder Report
+
+SELECT Product_Name 
+FROM Stock
+JOIN Product ON Stock.Product_ID = Product.Product_ID
+WHERE Quantity_Available <= Reorder_Point;
+
+3. Monthly Sales Report
+
+SELECT Product_Name, SUM(Quantity_Sold) AS Total_Quantity, SUM(Sale_Price * Quantity_Sold) AS Total_Sales
+FROM Sales
+JOIN Product ON Sales.Product_ID = Product.Product_ID
+WHERE Sale_Date BETWEEN '2024-10-01' AND '2024-10-31'
+GROUP BY Product_Name;
+
